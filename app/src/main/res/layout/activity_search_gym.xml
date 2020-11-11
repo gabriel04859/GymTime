@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".ui.SearchGymActivity">
+
+
+
+    <EditText
+        android:id="@+id/editTextSearchGym"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_edt_search"
+        android:ems="10"
+        android:drawableEnd="@drawable/ic_search"
+        android:layout_marginEnd="16dp"
+        android:drawablePadding="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/colorGray2"
+        android:fontFamily="@font/yantramanav"
+        android:hint="@string/encontre_sua_academia"
+        android:padding="12dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSearch"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/editTextSearchGym"
+        tools:listitem="@layout/item_search">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+</RelativeLayout>

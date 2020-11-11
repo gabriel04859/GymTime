@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "838038516526",
+    "firebase_url": "https://gymtimer-b9a7c.firebaseio.com",
+    "project_id": "gymtimer-b9a7c",
+    "storage_bucket": "gymtimer-b9a7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838038516526:android:3a718a385acd7a02fc00bf",
+        "android_client_info": {
+          "package_name": "com.gabriel.gymtimer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838038516526-utl2s4bsh16eeudvvjghcjadfbsju9kj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gabriel.gymtimer",
+            "certificate_hash": "8bdbe3c9a7115e37a9ae4658f1147706ea995ffe"
+          }
+        },
+        {
+          "client_id": "838038516526-dchtam63heuav9jqpuulbjfepb9gdav4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtqiJhop4Z95Hk2cwdTZIs5PTg2UQTtKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838038516526-dchtam63heuav9jqpuulbjfepb9gdav4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

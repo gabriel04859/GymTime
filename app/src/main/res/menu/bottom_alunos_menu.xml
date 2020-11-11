@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="@string/academia"
+        android:id="@+id/menuGym"
+        android:icon="@drawable/ic_gym"
+        app:cnb_iconColor="@color/colorWhite"
+        app:cnb_backgroundColor="@color/colorAccent"
+        app:cnb_textColor="@color/colorWhite"
+        />
+
+
+    <item android:title="@string/perfil"
+        android:id="@+id/menuProfile"
+        android:icon="@drawable/ic_person"
+        app:cnb_iconColor="@color/colorWhite"
+        app:cnb_backgroundColor="@color/colorAccent"
+        app:cnb_textColor="@color/colorWhite"/>
+</menu>

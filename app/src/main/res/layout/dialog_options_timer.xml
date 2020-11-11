@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="10dp"
+    app:cardCornerRadius="15dp"
+    android:background="@color/colorPrimary"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:padding="16dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/buttonEditarDialog"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/domine_bold"
+            android:background="@drawable/bg_button_login"
+            android:text="Editar" />
+
+        <Button
+            android:id="@+id/buttonDeleteDialog"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/domine_bold"
+            android:background="@drawable/bg_button_login"
+            android:layout_marginTop="16dp"
+            android:text="Deletar"  />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

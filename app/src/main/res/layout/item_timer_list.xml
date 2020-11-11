@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="160dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:layout_gravity="center"
+    android:elevation="10dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat"
+            android:background="@drawable/bg_item_timer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewDayGymItemTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/yantramanav"
+                android:text="Terça - Quinta"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/colorBlackOpaco"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewTimesGymItemTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="00:00 - 00:00"
+                android:fontFamily="@font/yantramanav"
+                android:textColor="@color/colorBlackOpaco"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewNumPeopleGymItemTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:fontFamily="@font/yantramanav"
+                android:maxLines="1"
+                android:text="0/000"
+                android:ellipsize="end"
+                android:textColor="@color/colorBlackOpaco"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</androidx.cardview.widget.CardView>
