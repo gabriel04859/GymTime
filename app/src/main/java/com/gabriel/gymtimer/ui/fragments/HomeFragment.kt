@@ -18,6 +18,7 @@ import android.widget.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gabriel.gymtimer.*
+import com.gabriel.gymtimer.Consts.Companion.TIME_COLLECTION
 import com.gabriel.gymtimer.Dialogs.AddTimeDialog
 import com.gabriel.gymtimer.Dialogs.DialogHome
 import com.gabriel.gymtimer.Dialogs.LoadingDialog
@@ -129,7 +130,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchTimes(gym: Gym) {
-        FirebaseSingleton.getFirebaseFirestore().collection("TIMERS")
+        FirebaseSingleton.getFirebaseFirestore().collection(TIME_COLLECTION)
             .whereEqualTo("idGym", gym.idGym)
             .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 querySnapshot?.documentChanges.let { docs ->

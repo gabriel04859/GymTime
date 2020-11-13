@@ -28,22 +28,11 @@ class AlunosListActivity : AppCompatActivity() {
         supportActionBar!!.hide()
         adapterAlunos = AlunosAdapter(applicationContext)
 
-        val alunosList : MutableList<User> = ArrayList()
-        showAllUsers(alunosList)
-
-
-
-
-
-
-
-
-
-
-
+        showAllUsers()
     }
 
-    private fun showAllUsers(alunosList : MutableList<User>) {
+    private fun showAllUsers() {
+        val alunosList : MutableList<User> = ArrayList()
         if (time.countTotal == 0){
             textVieAindaNaoTemAlunos.visibility = View.VISIBLE
             return
@@ -51,25 +40,18 @@ class AlunosListActivity : AppCompatActivity() {
 
         for (aluno in time.listAlunosTime){
             FirebaseSingleton.getFirebaseFirestore()
-                .collection(USER_COLLECTION).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
-                    querySnapshot?.documentChanges.let { docs ->
-                        if (docs != null) {
-                            for (doc in docs) {
-                                when (doc.type) {
-                                    DocumentChange.Type.ADDED -> {
-                                        val user = doc.document.toObject(User::class.java)
-                                     alunosList.add(user)
-
-                                    }
-
-                                }
-                            }
-                        } else {
-                            textVieAindaNaoTemAlunos.visibility = View.GONE
-                        }
+                .collection(USER_COLLECTION).document(aluno).get().addOnSuccessListener {
+                    val user = it.toObject(User::class.java)
+                    Log.i("TESTE","$user")
+                    alunosList.add(user!!)
+                    adapterAlunos.setAlunos(alunosList)
+                    recyclerAlunosTurma.apply {
+                        setHasFixedSize(true)
+                        adapter = adapterAlunos
                     }
                 }
         }
+
 
     }
 

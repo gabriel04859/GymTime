@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.app.TimePickerDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.widget.*
 import com.gabriel.gymtimer.Consts.Companion.TIME_COLLECTION
 import com.gabriel.gymtimer.Firebase.FirebaseSingleton
@@ -43,11 +44,11 @@ class DialogHome(val mActivity: Activity){
     }
 
     fun dialogConfirm(time : Time){
-        val buider = AlertDialog.Builder(activity)
+        val builder = AlertDialog.Builder(activity)
         val inflater = activity.layoutInflater
         val view = inflater.inflate(R.layout.dialog_confirm,null)
-        buider.setView(view)
-        val dialog = buider.create()
+        builder.setView(view)
+        val dialog = builder.create()
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
 
@@ -70,22 +71,32 @@ class DialogHome(val mActivity: Activity){
     }
 
     private fun addUserToTime(time: Time, dialog: AlertDialog) {
-        time.listAlunosTime.add(FirebaseSingleton.getFirebaseAuth().uid!!)
-        val total : Int = time.countTotal + 1
-       
-        if (time.countTotal >= time.numPessoas!!){
-            Toast.makeText(mActivity, "Horário lotado", Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
-            return
-        }
-
-        time.countTotal = total
-        FirebaseSingleton.getFirebaseFirestore().collection(TIME_COLLECTION).document(time.idTime!!).set(time)
+        Log.i("TESTE","Chamou")
+        FirebaseSingleton.getFirebaseFirestore().collection(TIME_COLLECTION)
+            .document(time.idTime!!)
+            .get()
             .addOnSuccessListener {
-                dialog.dismiss()
+                val timeCurrent = it.toObject(Time::class.java)
+                if (time.countTotal >= time.numPessoas!!){
+                    Toast.makeText(mActivity, "Horário cheio", Toast.LENGTH_SHORT).show()
+                    return@addOnSuccessListener
+
+                }
+                if (time.listAlunosTime.contains(FirebaseSingleton.getFirebaseAuth().uid)){
+                    Toast.makeText(mActivity, "Você já esta nesse horário", Toast.LENGTH_SHORT).show()
+                    return@addOnSuccessListener
+                }
+                timeCurrent!!.countTotal = time.countTotal +1
+                timeCurrent.listAlunosTime.add(FirebaseSingleton.getFirebaseAuth().uid!!)
+                FirebaseSingleton.getFirebaseFirestore().collection(TIME_COLLECTION).document(time.idTime).set(timeCurrent).addOnSuccessListener {
+                    dialog.dismiss()
+                }.addOnFailureListener {
+                    Log.i("TESTE", "Erro ao entrar na time: ${it.message}")
+                }
             }.addOnFailureListener {
-                dialog.dismiss()
+                Log.i("TESTE", "Erro obter a time: ${it.message}")
             }
+
     }
 
 

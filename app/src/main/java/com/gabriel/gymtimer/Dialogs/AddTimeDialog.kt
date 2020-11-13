@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.gabriel.gymtimer.Consts.Companion.TIME_COLLECTION
 import com.gabriel.gymtimer.Firebase.FirebaseSingleton
 import com.gabriel.gymtimer.R
 import com.gabriel.gymtimer.model.Time
@@ -122,7 +123,7 @@ class AddTimeDialog (private val mActivity : Activity){
         dialog: AlertDialog,
         idGym: String
     ) {
-        val firestore = FirebaseSingleton.getFirebaseFirestore().collection("TIMERS").document()
+        val firestore = FirebaseSingleton.getFirebaseFirestore().collection(TIME_COLLECTION).document()
         val idTime = firestore.id
         val time = Time(idTime, idGym, startDay, finalDay, startTime, finalTime, numPeoples.toInt())
         firestore.set(time).addOnCompleteListener {

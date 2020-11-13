@@ -53,6 +53,7 @@
         android:text="@string/ainda_n_o_possui_alunos"
         android:fontFamily="@font/yantramanav"
         android:textSize="22sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/recyclerAlunosTurma"
