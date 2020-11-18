@@ -31,4 +31,10 @@
     <string name="cancelar">Cancelar</string>
     <string name="escolha_imagem">Escolha uma imagem</string>
     <string name="ainda_n_o_possui_alunos">Ainda não possui alunos</string>
+    <string name="editar_perfil">Editar Perfil</string>
+    <string name="excluir">Excluir</string>
+    <string name="editar">Editar</string>
+    <string name="tem_certeza">Tem certeza?</string>
+    <string name="deletar">Deletar</string>
+    <string name="deseja_deletar">Deseja deletar?</string>
 </resources>

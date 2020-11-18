@@ -1,7 +1,6 @@
 package com.gabriel.gymtimer.mvp.presenter
 
 import android.util.Log
-import com.gabriel.gymtimer.Constants
 import com.gabriel.gymtimer.Consts.Companion.USER_COLLECTION
 import com.gabriel.gymtimer.Firebase.FirebaseSingleton
 import com.gabriel.gymtimer.model.User

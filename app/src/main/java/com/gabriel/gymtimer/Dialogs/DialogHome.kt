@@ -2,7 +2,6 @@ package com.gabriel.gymtimer.Dialogs
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.TimePickerDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
@@ -12,8 +11,6 @@ import com.gabriel.gymtimer.Firebase.FirebaseSingleton
 import com.gabriel.gymtimer.R
 import com.gabriel.gymtimer.model.Gym
 import com.gabriel.gymtimer.model.Time
-import java.text.SimpleDateFormat
-import java.util.*
 
 class DialogHome(val mActivity: Activity){
     private var activity : Activity = mActivity

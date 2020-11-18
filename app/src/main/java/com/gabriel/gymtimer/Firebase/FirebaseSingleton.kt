@@ -2,9 +2,6 @@ package com.gabriel.gymtimer.Firebase
 
 import android.util.Log
 import com.gabriel.gymtimer.Constants
-import com.gabriel.gymtimer.FirestoreCallBack
-import com.gabriel.gymtimer.GymFirebaseCallBack
-import com.gabriel.gymtimer.GymUserFrequentaFirebaseCallBack
 import com.gabriel.gymtimer.model.Gym
 import com.gabriel.gymtimer.model.User
 import com.google.firebase.auth.FirebaseAuth

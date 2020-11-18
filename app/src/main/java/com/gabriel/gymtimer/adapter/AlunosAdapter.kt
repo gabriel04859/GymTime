@@ -19,7 +19,9 @@ class AlunosAdapter (val context : Context) : RecyclerView.Adapter<AlunosAdapter
 
     inner class AlunosViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val circleImageViewAluno = itemView.findViewById<CircleImageView>(R.id.circleImageViewAluno)
-        val textViewAluno = itemView.findViewById<TextView>(R.id.textViewAlunoName)
+        val textViewAlunoName = itemView.findViewById<TextView>(R.id.textViewAlunoName)
+        val textViewAlunoPhone = itemView.findViewById<TextView>(R.id.textViewAlunoPhone)
+
 
     }
 
@@ -32,7 +34,8 @@ class AlunosAdapter (val context : Context) : RecyclerView.Adapter<AlunosAdapter
 
     override fun onBindViewHolder(holder: AlunosViewHolder, position: Int) {
         val user = alunosList[position]
-        holder.textViewAluno.text = user.name
+        holder.textViewAlunoName.text = user.name
+        holder.textViewAlunoPhone.text = user.phone
         Picasso.with(context).load(user.imageUser).placeholder(R.drawable.user_default).into(holder.circleImageViewAluno)
     }
 

@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
-    android:elevation="8dp"
-    android:layout_height="wrap_content">
+    android:elevation="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="8dp"
-        android:padding="16dp"
-        >
-        <LinearLayout
+        android:padding="16dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -25,8 +23,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/textViewDayFirst"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewDayFirstEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
@@ -35,7 +33,7 @@
                 android:text="De:"
                 android:textSize="19sp" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,8 +43,8 @@
                 android:text="-"
                 android:textSize="22sp" />
 
-            <TextView
-                android:id="@+id/textViewEnd"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewEndEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
@@ -55,9 +53,9 @@
                 android:text="Até:"
                 android:textSize="19sp" />
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linar2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,8 +65,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linar1">
 
-            <TextView
-                android:id="@+id/textViewTimeBegin"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewTimeBeginEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
@@ -76,7 +74,7 @@
                 android:gravity="center"
                 android:text="00:00"/>
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,18 +84,18 @@
                 android:text="-"
                 android:textSize="22sp" />
 
-            <TextView
-                android:id="@+id/textViewTimeEnd"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewTimeEndEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
                 android:fontFamily="@font/yantramanav"
                 android:gravity="center"
                 android:text="00:00"/>
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <EditText
-            android:id="@+id/editTextNumPeople"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editTextNumPeopleEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -111,22 +109,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linar2" />
 
-        <Button
-            android:id="@+id/buttonSaveTime"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonEditTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Salvar"
+            android:text="@string/editar"
             android:textAllCaps="false"
             android:textColor="@color/colorWhite"
             android:layout_margin="16dp"
             android:background="@drawable/bg_button_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumPeople" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextNumPeopleEdit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 
 </androidx.cardview.widget.CardView>

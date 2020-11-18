@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gabriel.gymtimer.*
 import com.gabriel.gymtimer.Firebase.FirebaseSingleton
+import com.gabriel.gymtimer.Firebase.FirestoreCallBack
 import com.gabriel.gymtimer.model.Gym
 import com.gabriel.gymtimer.model.User
 import com.gabriel.gymtimer.ui.MainActivity

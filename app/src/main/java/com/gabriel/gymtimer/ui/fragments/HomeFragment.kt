@@ -2,12 +2,8 @@
 package com.gabriel.gymtimer.ui.fragments
 
 import android.app.Activity
-import android.app.AlertDialog
-import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -23,23 +19,25 @@ import com.gabriel.gymtimer.Dialogs.AddTimeDialog
 import com.gabriel.gymtimer.Dialogs.DialogHome
 import com.gabriel.gymtimer.Dialogs.LoadingDialog
 import com.gabriel.gymtimer.Firebase.FirebaseSingleton
+import com.gabriel.gymtimer.Firebase.FirestoreCallBack
+import com.gabriel.gymtimer.Firebase.GymFirebaseCallBack
+import com.gabriel.gymtimer.Firebase.GymUserFrequentaFirebaseCallBack
 import com.gabriel.gymtimer.model.Gym
 import com.gabriel.gymtimer.model.Time
 import com.gabriel.gymtimer.model.User
 import com.gabriel.gymtimer.ui.AlunosListActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.DocumentChange
+
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.item_timer_list.view.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 class HomeFragment : Fragment() {
     private lateinit var textViewNameGymHome: TextView
+    private lateinit var textViewNotHaveTime : TextView
     private lateinit var buttonMoreInformation: ImageButton
     private lateinit var imageViewGymHome: ImageView
     private lateinit var recyclerHome: RecyclerView
@@ -98,6 +96,7 @@ class HomeFragment : Fragment() {
         textViewNameGymHome = view.findViewById(R.id.textViewNameGymHome)
         buttonMoreInformation = view.findViewById(R.id.buttonMoreInformation)
         imageViewGymHome = view.findViewById(R.id.imageViewGymHome)
+        textViewNotHaveTime = view.findViewById(R.id.textViewNotHaveTime)
         recyclerHome = view.findViewById(R.id.recyclerHome)
         recyclerHome.apply {
             layoutManager = GridLayoutManager(mContext,2)
@@ -112,14 +111,16 @@ class HomeFragment : Fragment() {
     private fun getGymCurrentUser() {
         FirebaseSingleton.getGym(object : GymFirebaseCallBack {
             override fun onGetGym(gym: Gym) {
+                gym.let {
+                    Picasso.with(mContext).load(it.photo).into(imageViewGymHome)
+                    textViewNameGymHome.text = it.name
+                    idGym = it.idGym!!
+                }
 
-                Picasso.with(mContext).load(gym.photo).into(imageViewGymHome)
-                textViewNameGymHome.text = gym.name
                 buttonMoreInformation.setOnClickListener {
                     dialogHome.showDialogMoreInformation(gym)
                 }
 
-                idGym = gym.idGym!!
                 fetchTimes(gym)
                 loadingDialog.dialogDimiss()
 
@@ -140,6 +141,7 @@ class HomeFragment : Fragment() {
                                 DocumentChange.Type.ADDED -> {
                                     val time = doc.document.toObject(Time::class.java)
                                     timeAdapter.add(TimeItem(time))
+                                    textViewNotHaveTime.visibility = View.GONE
                                     timeAdapter.notifyDataSetChanged()
 
                                 }
@@ -151,8 +153,6 @@ class HomeFragment : Fragment() {
                                 }
                             }
                         }
-                    } else {
-                        textViewNotHaveTime.visibility = View.VISIBLE
                     }
                 }
             }
@@ -188,8 +188,11 @@ class HomeFragment : Fragment() {
             val times = "${time.tempoInicio} - ${time.tempoFinal}"
             viewHolder.itemView.textViewDayGymItemTimer.text = days
             viewHolder.itemView.textViewTimesGymItemTimer.text = times
-            viewHolder.itemView.textViewNumPeopleGymItemTimer.text =
-                "${time.countTotal.toString()} / ${time.numPessoas.toString()}"
+                viewHolder.itemView.textViewNumPeopleGymItemTimer.text =
+                    "${time.countTotal.toString()} / ${time.numPessoas.toString()}"
+
+            
+
 
 
         }

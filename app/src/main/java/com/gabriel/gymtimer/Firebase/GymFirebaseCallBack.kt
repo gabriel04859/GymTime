@@ -1,4 +1,4 @@
-package com.gabriel.gymtimer
+package com.gabriel.gymtimer.Firebase
 
 import com.gabriel.gymtimer.model.Gym
 

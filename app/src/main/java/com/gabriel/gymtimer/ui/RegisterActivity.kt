@@ -15,8 +15,6 @@ import com.gabriel.gymtimer.R
 import com.gabriel.gymtimer.model.User
 import com.gabriel.gymtimer.mvp.contract.RegisterContract
 import com.gabriel.gymtimer.mvp.presenter.RegisterPresenter
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.*
 import kotlinx.android.synthetic.main.activity_register.*
 import java.util.*
 

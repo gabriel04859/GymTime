@@ -14,6 +14,7 @@ import com.gabriel.gymtimer.Consts.Companion.TIME_COLLECTION
 import com.gabriel.gymtimer.Firebase.FirebaseSingleton
 import com.gabriel.gymtimer.R
 import com.gabriel.gymtimer.model.Time
+import com.gabriel.gymtimer.utils.SetTimeAndDay
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,6 +22,10 @@ class AddTimeDialog (private val mActivity : Activity){
 
     private val daysArray = arrayOf("Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo")
     private var day = ""
+
+    private val setTimeAndDay by lazy {
+        SetTimeAndDay(mActivity)
+    }
 
     fun addTime(idGym : String){
     val alert = AlertDialog.Builder(mActivity)

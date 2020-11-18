@@ -13,9 +13,7 @@ import com.gabriel.gymtimer.*
 import com.gabriel.gymtimer.Dialogs.LoadingDialog
 import com.gabriel.gymtimer.Firebase.FirebaseSingleton
 import com.gabriel.gymtimer.model.Address
-import com.gabriel.gymtimer.model.Gym
 import com.gabriel.gymtimer.mvp.contract.BaseContract
-import com.gabriel.gymtimer.mvp.contract.NewGymContract
 import com.gabriel.gymtimer.mvp.presenter.NewGymPresenter
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_new_gym.*

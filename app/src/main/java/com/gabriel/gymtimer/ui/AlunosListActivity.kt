@@ -1,24 +1,28 @@
 package com.gabriel.gymtimer.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
-import com.gabriel.gymtimer.Constants
+import android.widget.PopupMenu
+import com.gabriel.gymtimer.Consts.Companion.TIME_COLLECTION
 import com.gabriel.gymtimer.Consts.Companion.USER_COLLECTION
+import com.gabriel.gymtimer.Dialogs.DeleteDialog
+import com.gabriel.gymtimer.Dialogs.EditTimeDialog
 import com.gabriel.gymtimer.Firebase.FirebaseSingleton
 import com.gabriel.gymtimer.R
 import com.gabriel.gymtimer.adapter.AlunosAdapter
 import com.gabriel.gymtimer.model.Time
 import com.gabriel.gymtimer.model.User
-import com.google.firebase.firestore.DocumentChange
 import kotlinx.android.synthetic.main.activity_alunos_list.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class AlunosListActivity : AppCompatActivity() {
     private lateinit var time: Time
     private lateinit var adapterAlunos : AlunosAdapter
+    private  val deleteDialog by lazy{
+        DeleteDialog(this)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alunos_list)
@@ -29,7 +33,17 @@ class AlunosListActivity : AppCompatActivity() {
         adapterAlunos = AlunosAdapter(applicationContext)
 
         showAllUsers()
+        imageButtonBackAlunosList.setOnClickListener {
+            val i = Intent(applicationContext,MainActivity::class.java)
+            finish()
+            startActivity(i)
+        }
+        imageButtonEditTime.setOnClickListener {
+            showPopup(it)
+        }
     }
+
+
 
     private fun showAllUsers() {
         val alunosList : MutableList<User> = ArrayList()
@@ -52,6 +66,26 @@ class AlunosListActivity : AppCompatActivity() {
                 }
         }
 
+
+    }
+
+    private fun showPopup(view: View) {
+        val popUp = PopupMenu(applicationContext, view)
+        popUp.inflate(R.menu.menu_popup_alunos)
+        popUp.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.menuDeleteTime -> {
+                    deleteDialog.showDeleteDialog(time.idTime!!)
+                }
+                R.id.menuEditTime -> {
+                    val dialogEdit = EditTimeDialog(this)
+                    dialogEdit.showDialogEditTime(time.idTime!!)
+
+                }
+            }
+            true
+        }
+        popUp.show()
 
     }
 

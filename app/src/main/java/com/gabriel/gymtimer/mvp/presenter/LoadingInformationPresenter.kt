@@ -1,18 +1,9 @@
 package com.gabriel.gymtimer.mvp.presenter
 
-import android.content.Intent
-import android.util.Log
-import com.gabriel.gymtimer.Constants
-import com.gabriel.gymtimer.Consts
 import com.gabriel.gymtimer.Consts.Companion.GYM_COLLECTION
-import com.gabriel.gymtimer.Firebase.FirebaseQuerys
 import com.gabriel.gymtimer.Firebase.FirebaseSingleton
-import com.gabriel.gymtimer.GymUserFrequentaFirebaseCallBack
-import com.gabriel.gymtimer.model.Gym
 import com.gabriel.gymtimer.model.User
 import com.gabriel.gymtimer.mvp.contract.LoadingInformantionContract
-import com.gabriel.gymtimer.ui.MainActivity
-import com.gabriel.gymtimer.ui.NewGymActivity
 
 class LoadingInformationPresenter(
     private val view : LoadingInformantionContract.View) : LoadingInformantionContract.Presenter{

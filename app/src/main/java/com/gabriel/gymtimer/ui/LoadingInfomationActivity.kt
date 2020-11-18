@@ -4,9 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.gabriel.gymtimer.Constants
 import com.gabriel.gymtimer.Firebase.FirebaseSingleton
-import com.gabriel.gymtimer.FirestoreCallBack
+import com.gabriel.gymtimer.Firebase.FirestoreCallBack
 import com.gabriel.gymtimer.R
 import com.gabriel.gymtimer.model.User
 import com.gabriel.gymtimer.mvp.contract.LoadingInformantionContract
