@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.HomeFragment">
 
@@ -110,9 +109,9 @@
         android:layout_gravity="fill_horizontal"
         android:layout_marginBottom="400dp"
         android:gravity="center"
+        android:text="Ainda não possui horários"
         android:textSize="19sp"
         android:fontFamily="@font/yantramanav"
-        android:text="Adcione os horários"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

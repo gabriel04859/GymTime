@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
-import com.gabriel.gymtimer.Consts.Companion.TIME_COLLECTION
 import com.gabriel.gymtimer.Consts.Companion.USER_COLLECTION
 import com.gabriel.gymtimer.Dialogs.DeleteDialog
 import com.gabriel.gymtimer.Dialogs.EditTimeDialog
 import com.gabriel.gymtimer.Firebase.FirebaseSingleton
+import com.gabriel.gymtimer.Firebase.FirebaseUtils
+import com.gabriel.gymtimer.Firebase.GetCurrentUserCallBack
 import com.gabriel.gymtimer.R
 import com.gabriel.gymtimer.adapter.AlunosAdapter
 import com.gabriel.gymtimer.model.Time
@@ -31,6 +32,15 @@ class AlunosListActivity : AppCompatActivity() {
         Log.i("TESTE","$time")
         supportActionBar!!.hide()
         adapterAlunos = AlunosAdapter(applicationContext)
+
+        FirebaseUtils.getCurrentUser(object : GetCurrentUserCallBack{
+            override fun onGetCurrentUser(user: User) {
+                if (user.boss == true){
+                    imageButtonEditTime.visibility = View.VISIBLE
+                }
+            }
+
+        })
 
         showAllUsers()
         imageButtonBackAlunosList.setOnClickListener {
@@ -65,8 +75,6 @@ class AlunosListActivity : AppCompatActivity() {
                     }
                 }
         }
-
-
     }
 
     private fun showPopup(view: View) {
@@ -80,13 +88,11 @@ class AlunosListActivity : AppCompatActivity() {
                 R.id.menuEditTime -> {
                     val dialogEdit = EditTimeDialog(this)
                     dialogEdit.showDialogEditTime(time.idTime!!)
-
                 }
             }
             true
         }
         popUp.show()
-
     }
 
 }

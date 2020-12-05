@@ -47,38 +47,6 @@ object FirebaseSingleton{
         return storageReference as StorageReference
     }
 
-    fun getUser(firestoreCallBack : FirestoreCallBack) {
-        getFirebaseFirestore().collection(Constants.USER_COLLECTION).document(getFirebaseAuth().uid!!).get()
-            .addOnSuccessListener {
-                val user = it.toObject(User::class.java)
-                Log.i("TESTE", "user: $user")
-                firestoreCallBack.onGetUser(user!!)
-            }
-    }
 
-    fun getGym(gymFirebaseCallBack: GymFirebaseCallBack){
-        getFirebaseFirestore().collection(Constants.GYM_COLLECTION)
-            .whereEqualTo("idUser", getFirebaseAuth().uid).get()
-            .addOnSuccessListener { docs ->
-                for (doc in docs){
-                    val gym = doc.toObject(Gym::class.java)
-                    Log.i("TESTE","Id gym: ${gym.idGym}")
-                    gymFirebaseCallBack.onGetGym(gym)
-                }
-            }
-    }
-
-    fun getGymUserFrequenta(gymUserFrequentaFirebaseCallBack : GymUserFrequentaFirebaseCallBack){
-        val idUser : String = getFirebaseAuth().uid!!
-        val gymRef = getFirebaseFirestore().collection(Constants.GYM_COLLECTION)
-        gymRef.whereArrayContains("listAlunosGym", idUser).get()
-            .addOnSuccessListener { docs ->
-                for (doc in docs){
-                    val gym = doc.toObject(Gym::class.java)
-                    Log.i("TESTE","Id gym: ${gym.idGym}")
-                    gymUserFrequentaFirebaseCallBack.onGetUserGym(gym)
-                }
-            }
-    }
 
 }

@@ -36,7 +36,7 @@ class AlunosAdapter (val context : Context) : RecyclerView.Adapter<AlunosAdapter
         val user = alunosList[position]
         holder.textViewAlunoName.text = user.name
         holder.textViewAlunoPhone.text = user.phone
-        Picasso.with(context).load(user.imageUser).placeholder(R.drawable.user_default).into(holder.circleImageViewAluno)
+        Picasso.with(context).load(user.imageUser).placeholder(R.drawable.default_user).into(holder.circleImageViewAluno)
     }
 
 }

@@ -2,6 +2,6 @@ package com.gabriel.gymtimer.Firebase
 
 import com.gabriel.gymtimer.model.Gym
 
-interface GymUserFrequentaFirebaseCallBack {
-    fun onGetUserGym(gym : Gym)
+interface GetBossGymCallBack {
+    fun onGetBossGym(gym : Gym)
 }

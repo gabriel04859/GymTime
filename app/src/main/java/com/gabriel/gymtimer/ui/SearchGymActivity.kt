@@ -1,5 +1,6 @@
 package com.gabriel.gymtimer.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -20,6 +21,13 @@ class SearchGymActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_gym)
+
+        imageButtonBackSearch.setOnClickListener {
+            FirebaseSingleton.getFirebaseAuth().signOut()
+            val i = Intent(applicationContext,LoginActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(i)
+        }
 
         FirebaseSingleton.getFirebaseFirestore().collection(Constants.GYM_COLLECTION).get().addOnSuccessListener {
             for (doc in it){

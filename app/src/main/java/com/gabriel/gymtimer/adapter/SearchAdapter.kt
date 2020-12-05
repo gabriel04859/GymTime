@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gabriel.gymtimer.*
+import com.gabriel.gymtimer.Firebase.GetCurrentUserCallBack
 import com.gabriel.gymtimer.Firebase.FirebaseSingleton
-import com.gabriel.gymtimer.Firebase.FirestoreCallBack
+import com.gabriel.gymtimer.Firebase.FirebaseUtils
 import com.gabriel.gymtimer.model.Gym
 import com.gabriel.gymtimer.model.User
 import com.gabriel.gymtimer.ui.MainActivity
@@ -36,12 +37,13 @@ class SearchAdapter(var searchList : List<Gym>, private val context : Context, p
     }
 
     private fun addTrueGymToUser(gym: Gym) {
-        FirebaseSingleton.getUser(object : FirestoreCallBack {
-            override fun onGetUser(user: User){
+        FirebaseUtils.getCurrentUser(object : GetCurrentUserCallBack{
+            override fun onGetCurrentUser(user: User) {
                 user.frequentaGym = true
                 gym.listAlunosGym.add(user.idUser!!)
                 updateUserFrequentaGym(user,gym)
             }
+
         })
 
     }

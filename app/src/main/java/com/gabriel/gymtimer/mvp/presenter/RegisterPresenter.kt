@@ -6,19 +6,18 @@ import com.gabriel.gymtimer.Firebase.FirebaseSingleton
 import com.gabriel.gymtimer.model.User
 import com.gabriel.gymtimer.mvp.contract.RegisterContract
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.auth.*
 
 class RegisterPresenter(private val view : RegisterContract.View) : RegisterContract.Presenter {
 
     override fun createUser(user: User) {
-        FirebaseSingleton.getFirebaseAuth().createUserWithEmailAndPassword(user.email!!,user.password!!)
+        val fbAuth = FirebaseAuth.getInstance()
+        fbAuth.createUserWithEmailAndPassword(user.email!!,user.password!!)
             .addOnCompleteListener{
                 if (it.isSuccessful){
-                    saveUser(user)
-                    Log.i("TESTE", "Salvo com sucesso $it")
+                    val userFinal = User(fbAuth.uid,user.name,user.email,user.password,user.phone,user.imageUser,user.boss,user.frequentaGym)
+                    saveUser(userFinal)
+                    Log.i("TESTE", "Salvo com sucesso ${userFinal.idUser}")
 
                 }else{
                     Log.i("TESTE", "Erro ao salvar ${it.getResult()}")

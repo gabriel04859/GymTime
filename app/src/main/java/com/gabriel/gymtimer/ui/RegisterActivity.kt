@@ -15,6 +15,8 @@ import com.gabriel.gymtimer.R
 import com.gabriel.gymtimer.model.User
 import com.gabriel.gymtimer.mvp.contract.RegisterContract
 import com.gabriel.gymtimer.mvp.presenter.RegisterPresenter
+import com.gabriel.gymtimer.utils.HomeBottomSheetDialog
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_register.*
 import java.util.*
 
@@ -25,10 +27,9 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClic
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_register)
         supportActionBar!!.hide()
         loadingDialog = LoadingDialog(this)
-
-        setContentView(R.layout.activity_register)
 
 
         buttonRegister.setOnClickListener(this)
@@ -66,7 +67,7 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClic
         val phone = editTextPhoneRegister.text.toString().trim()
 
         if (name.isEmpty() || email.isEmpty() || password.isEmpty() || phone.isEmpty()) {
-            Toast.makeText(applicationContext, "Preencha todos os campos", Toast.LENGTH_SHORT)
+            Toast.makeText(applicationContext, getString(R.string.preencha_todos_os_campos), Toast.LENGTH_SHORT)
                 .show()
             loadingDialog.dialogDimiss()
             return
@@ -76,7 +77,7 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClic
         val fileName = UUID.randomUUID().toString()
         val reference = FirebaseSingleton.getStorageReference(Constants.STORAGE_REFERENCE_USER).child(fileName)
         if (imageUri == null) {
-            imageUri = Uri.parse("android.resource://$packageName/${R.drawable.user_default}")
+            imageUri = Uri.parse("android.resource://$packageName/${R.drawable.default_user}")
             reference.putFile(imageUri!!)
         } else {
             reference.putFile(imageUri!!)
@@ -86,9 +87,10 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClic
         reference.putFile(imageUri!!).addOnSuccessListener {
             reference.downloadUrl.addOnSuccessListener {
                 Log.i("TESTE", "Download ref Uri: $it")
-                val idUser = FirebaseSingleton.getFirebaseAuth().uid
-                Log.i("TESTE", "Id User ${idUser}")
-                val user = User(idUser, name, email, password, phone, it.toString(), typeUser, false)
+
+                val firebaseAuth  = FirebaseSingleton.getFirebaseAuth()
+                Log.i("TESTE", "Id User ${firebaseAuth.uid}")
+                val user = User(firebaseAuth.uid, name, email, password, phone, it.toString(), typeUser, false)
                 registerPresenter.createUser(user)
             }
 

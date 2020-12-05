@@ -1,38 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.NewGymActivity">
+    tools:context=".ui.EditGymActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarNewGym"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorAccent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/imageButtonClose"
-                android:layout_width="30dp"
-                android:layout_marginEnd="16dp"
-                android:layout_height="30dp"
-                android:background="@drawable/ic_close" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:textColor="@color/colorWhite"
-                android:fontFamily="@font/yantramanav"
-                android:text="@string/escolha_imagem" />
-        </androidx.appcompat.widget.Toolbar>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageViewGymNG"
@@ -41,23 +19,23 @@
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarNewGym"
+            app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonOpenGaleryNG"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:text="Clique Aqui"
-            android:textStyle="bold"
-            android:textAllCaps="false"
             android:background="@color/colorAccent"
             android:fontFamily="@font/yantramanav"
+            android:text="@string/clique_aqui"
+            android:textAllCaps="false"
             android:textColor="@color/colorWhite"
             android:textSize="19sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarNewGym" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -67,84 +45,77 @@
             app:layout_constraintTop_toBottomOf="@+id/imageViewGymNG">
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/editTextNameGymNG"
+                android:id="@+id/editTextNameGymEdit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/yantramanav"
                 android:background="@drawable/bg_edit_default"
                 android:inputType="text"
-                android:paddingStart="22dp"
                 android:hint="@string/name"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textViewUf"
+                android:id="@+id/textViewUFEdit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/yantramanav"
-                android:background="@drawable/bg_edit_login"
+                android:background="@drawable/bg_edit_default"
                 android:inputType="text"
-                android:paddingStart="22dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/uf"/>
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/editTextCep"
+                android:id="@+id/editTextCepEdit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/yantramanav"
                 android:background="@drawable/bg_edit_default"
                 android:inputType="number"
-                android:paddingStart="22dp"
                 android:layout_marginTop="10dp"
                 android:hint="@string/cep"/>
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/editTextRua"
+                android:id="@+id/editTextRuaEdit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/yantramanav"
                 android:background="@drawable/bg_edit_default"
                 android:inputType="textPostalAddress"
-                android:paddingStart="22dp"
                 android:layout_marginTop="10dp"
                 android:hint="@string/rua"/>
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/editTextNum"
+                android:id="@+id/editTextNumEdit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/yantramanav"
                 android:background="@drawable/bg_edit_default"
                 android:inputType="number"
-                android:paddingStart="22dp"
                 android:layout_marginTop="10dp"
                 android:hint="@string/num"/>
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/editTextComplemento"
+                android:id="@+id/editTextComplementoEdit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/yantramanav"
                 android:background="@drawable/bg_edit_default"
                 android:inputType="text"
-                android:paddingStart="22dp"
                 android:layout_marginTop="10dp"
                 android:hint="@string/complemento"/>
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/editTextCidade"
+                android:id="@+id/editTextCidadeEdit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/yantramanav"
                 android:background="@drawable/bg_edit_default"
                 android:inputType="text"
-                android:paddingStart="22dp"
                 android:layout_marginTop="10dp"
                 android:hint="@string/cidade"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="250dp"
-                android:id="@+id/ButtonSaveGym"
+                android:id="@+id/ButtonEditGym"
                 android:layout_gravity="center"
                 android:textColor="@color/colorWhite"
                 android:fontFamily="@font/yantramanav"
@@ -153,11 +124,15 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_button_login"
                 android:layout_height="wrap_content"
-                android:text="Salvar"/>
+                android:text="@string/editar"/>
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 </androidx.core.widget.NestedScrollView>

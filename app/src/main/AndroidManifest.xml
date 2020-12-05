@@ -4,19 +4,17 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_app"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_app_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.AlunosListActivity"></activity>
+        <activity android:name=".ui.EditGymActivity"></activity>
+        <activity android:name=".ui.AlunosListActivity" />
         <activity
             android:name=".ui.LoadingInfomationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.ProfileActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.SplashScreenActivity"
             android:screenOrientation="portrait">
@@ -35,7 +33,6 @@
             android:name=".ui.SearchGymActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
         <activity
             android:name=".ui.LoginActivity"
             android:screenOrientation="portrait"

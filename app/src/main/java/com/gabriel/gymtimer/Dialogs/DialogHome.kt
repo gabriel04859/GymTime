@@ -11,6 +11,8 @@ import com.gabriel.gymtimer.Firebase.FirebaseSingleton
 import com.gabriel.gymtimer.R
 import com.gabriel.gymtimer.model.Gym
 import com.gabriel.gymtimer.model.Time
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 
 class DialogHome(val mActivity: Activity){
     private var activity : Activity = mActivity
@@ -29,6 +31,8 @@ class DialogHome(val mActivity: Activity){
         val textViewNumMoreInfo = view.findViewById<TextView>(R.id.textViewNumMoreInfo)
         val textViewComplementosMoreInfo = view.findViewById<TextView>(R.id.textViewComplementosMoreInfo)
         val textViewCityMoreInfo = view.findViewById<TextView>(R.id.textViewCityMoreInfo)
+        val circleImageViewGymMoreInformation = view.findViewById<CircleImageView>(R.id.circleImageViewGymMoreInformation)
+
 
         gym.let {
             textViewNameMoreInfo.text = it.name
@@ -36,6 +40,7 @@ class DialogHome(val mActivity: Activity){
             textViewNumMoreInfo.text = "Número: ${it.address.num.toString()}"
             textViewComplementosMoreInfo.text ="Endereço: ${it.address.complemento}"
             textViewCityMoreInfo.text = "Cidade: ${it.address.cidade}"
+            Picasso.with(mActivity).load(it.photo).into(circleImageViewGymMoreInformation)
 
         }
     }

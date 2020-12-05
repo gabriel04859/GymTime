@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.gabriel.gymtimer.Firebase.FirebaseSingleton
-import com.gabriel.gymtimer.Firebase.FirestoreCallBack
+import com.gabriel.gymtimer.Firebase.FirebaseUtils
+import com.gabriel.gymtimer.Firebase.GetCurrentUserCallBack
 import com.gabriel.gymtimer.R
 import com.gabriel.gymtimer.model.User
 import com.gabriel.gymtimer.mvp.contract.LoadingInformantionContract
@@ -20,8 +20,8 @@ class LoadingInfomationActivity : AppCompatActivity(), LoadingInformantionContra
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading_infomation)
 
-        FirebaseSingleton.getUser(object : FirestoreCallBack {
-            override fun onGetUser(user: User){
+        FirebaseUtils.getCurrentUser(object : GetCurrentUserCallBack {
+            override fun onGetCurrentUser(user: User) {
                 loadingInformationPresenter.checkUser(user)
             }
         })

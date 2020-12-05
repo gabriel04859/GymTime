@@ -14,6 +14,10 @@ import com.gabriel.gymtimer.Firebase.FirebaseSingleton
 import com.gabriel.gymtimer.Dialogs.LoadingDialog
 import com.gabriel.gymtimer.R
 import com.gabriel.gymtimer.model.User
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
@@ -21,6 +25,8 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var loadingDialog: LoadingDialog
+    private lateinit var  googleSignInClient: GoogleSignInClient
+     val RC_SIGN_IN : Int = 1231
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -35,8 +41,40 @@ class LoginActivity : AppCompatActivity() {
             showDialog()
         }
 
+        buttonLoginGoogle.setOnClickListener {
+            signWithGoogle()
+
+        }
+
+        val googleSign = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this,googleSign)
 
 
+
+
+
+    }
+    private fun signWithGoogle(){
+        val signIntent = googleSignInClient.signInIntent
+        startActivityForResult(signIntent,RC_SIGN_IN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_SIGN_IN){
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                Toast.makeText(this, "Nome: ${account!!.displayName}", Toast.LENGTH_SHORT).show()
+
+            }catch (e : ApiException){
+                Log.i("TESTE","Não foi possivel pegar o nome: ${e.printStackTrace()}")
+            }
+        }
     }
 
 

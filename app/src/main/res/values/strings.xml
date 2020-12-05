@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GymTimer</string>
+    <string name="app_name">Gym Timer</string>
     <string name="email">Email</string>
     <string name="senha">Senha</string>
     <string name="entrar">Entrar</string>
@@ -13,7 +13,6 @@
     <string name="num">Número</string>
     <string name="complemento">Complemento</string>
     <string name="cidade">Cidade</string>
-    <string name="clique_aqui">Clique Aqui</string>
     <string name="phone">Telefone</string>
     <string name="password">Senha</string>
     <string name="sua_academia">SUA ACADEMIA</string>
@@ -37,4 +36,8 @@
     <string name="tem_certeza">Tem certeza?</string>
     <string name="deletar">Deletar</string>
     <string name="deseja_deletar">Deseja deletar?</string>
+    <string name="hor_rios">Horários</string>
+    <string name="clique_aqui">Clique Aqui</string>
+    <string name="salvar">Salvar</string>
+    <string name="preencha_todos_os_campos">Preencha todos os campos</string>
 </resources>

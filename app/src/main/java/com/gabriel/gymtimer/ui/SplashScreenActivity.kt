@@ -8,7 +8,7 @@ import android.util.Log
 import com.gabriel.gymtimer.R
 import com.google.firebase.auth.FirebaseAuth
 
-class SplashScreenActivity : AppCompatActivity() {
+class SplashScreenActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar!!.hide()
@@ -17,21 +17,21 @@ class SplashScreenActivity : AppCompatActivity() {
 
 
         Handler().postDelayed({
-           autheticationUser()
+           //autheticationUser()
         },3000)
     }
 
 
 
     private fun autheticationUser() {
-        val firebaseUser  = FirebaseAuth.getInstance().currentUser
-        if (firebaseUser == null){
-            Log.i("TESTE","${firebaseUser}")
+        if (FirebaseAuth.getInstance().currentUser == null){
+            Log.i("TESTE","Usuario nulo")
             val i = Intent(this, LoginActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(i)
             return
         } else {
+            Log.i("TESTE", "${FirebaseAuth.getInstance().uid}")
             val i = Intent(this, LoadingInfomationActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(i)
@@ -39,4 +39,30 @@ class SplashScreenActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onStart() {
+        super.onStart()
+        FirebaseAuth.getInstance().addAuthStateListener(this)
     }
+
+    override fun onStop() {
+        super.onStop()
+        FirebaseAuth.getInstance().removeAuthStateListener(this)
+    }
+    override fun onAuthStateChanged(firebaseAuth: FirebaseAuth) {
+        if (firebaseAuth.currentUser == null){
+            Log.i("TESTE","Usuario nulo")
+            val i = Intent(this, LoginActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(i)
+            return
+        }else{
+            Log.i("TESTE", "${FirebaseAuth.getInstance().uid}")
+            val i = Intent(this, LoadingInfomationActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(i)
+            return
+        }
+
+    }
+}

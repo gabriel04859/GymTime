@@ -23,14 +23,15 @@ class NewGymActivity : AppCompatActivity(), BaseContract.View {
     private val newGymPresenter by lazy {
         NewGymPresenter(this)
     }
+    private val loadingDialog by lazy{
+        LoadingDialog(this)
+    }
 
-    private lateinit var loadingDialog : LoadingDialog
     private var imageUri : Uri? = null
-    private val ufArray = arrayOf("RJ", "SP", "MG", "RS", "PE", "PA","PR")
+    private val ufArray = arrayOf("AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG", "PA","PB","PR","PE","PI","RJ","RO","RR","SC","SP","SE","TO")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_gym)
-        loadingDialog = LoadingDialog(this)
         loadingDialog.showDialogRegisterGym()
 
         imageButtonClose.setOnClickListener {
