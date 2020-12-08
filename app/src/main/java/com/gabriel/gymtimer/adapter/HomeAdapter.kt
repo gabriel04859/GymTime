@@ -3,20 +3,21 @@ package com.gabriel.gymtimer.adapter
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.gabriel.gymtimer.Dialogs.DialogHome
+import com.gabriel.gymtimer.Dialogs.EnterTimeDialog
 import com.gabriel.gymtimer.R
 import com.gabriel.gymtimer.model.Time
 import com.gabriel.gymtimer.ui.AlunosListActivity
 
-class HomeAdapter (private val context : Context) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(){
+class HomeAdapter (private val context : Context,private val mActivity : Activity) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(){
     private var timersList : MutableList<Time> = ArrayList()
-    //private val dialogHome = DialogHome(mActivity)
+    private val enterTimeDialog = EnterTimeDialog(mActivity)
 
     fun setTimers(timers : MutableList<Time>){
         timersList = timers
@@ -67,7 +68,8 @@ class HomeAdapter (private val context : Context) : RecyclerView.Adapter<HomeAda
                     context.startActivity(intent)
                 }
                 R.id.menuEntrarHorario -> {
-                    //dialogHome.dialogConfirm(time)
+                    Log.i("TESTE","Click poppup")
+                    enterTimeDialog.showEnterTimeDialog(time)
                 }
             }
             true

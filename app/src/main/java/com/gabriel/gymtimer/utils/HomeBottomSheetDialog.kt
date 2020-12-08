@@ -1,17 +1,20 @@
 package com.gabriel.gymtimer.utils
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import com.gabriel.gymtimer.Firebase.*
 import com.gabriel.gymtimer.R
 import com.gabriel.gymtimer.model.Gym
 import com.gabriel.gymtimer.model.User
+import com.gabriel.gymtimer.ui.EditGymActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
@@ -26,6 +29,7 @@ class HomeBottomSheetDialog(gym : Gym) : BottomSheetDialogFragment() {
     private lateinit var textViewNumSheet : TextView
     private lateinit var textViewCEPSheet : TextView
     private lateinit var textViewUFSheet : TextView
+    private lateinit var imageButtonEditGymSheet : ImageButton
     private lateinit var textViewPhoneGymBottomSheet : TextView
 
     private lateinit var mContext: Context
@@ -52,6 +56,7 @@ class HomeBottomSheetDialog(gym : Gym) : BottomSheetDialogFragment() {
         textViewCEPSheet = view.findViewById(R.id.textViewCEPSheet)
         textViewUFSheet = view.findViewById(R.id.textViewUFSheet)
         textViewPhoneGymBottomSheet = view.findViewById(R.id.textViewPhoneGymBottomSheet)
+        imageButtonEditGymSheet = view.findViewById(R.id.imageButtonEditGymSheet)
 
 
 
@@ -68,6 +73,12 @@ class HomeBottomSheetDialog(gym : Gym) : BottomSheetDialogFragment() {
             textViewNumSheet.text = it.address?.num.toString()
             textViewCEPSheet.text = it.address?.CEP.toString()
             textViewUFSheet.text = it.address?.UF
+
+        }
+        imageButtonEditGymSheet.setOnClickListener {
+            val i = Intent(mContext,EditGymActivity::class.java)
+            i.putExtra("gym",gym)
+            mContext.startActivity(i)
         }
 
         FirebaseUtils.getCurrentUser(object : GetCurrentUserCallBack{

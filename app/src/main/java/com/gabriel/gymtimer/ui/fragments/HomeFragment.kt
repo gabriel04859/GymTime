@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gabriel.gymtimer.*
 import com.gabriel.gymtimer.Consts.Companion.TIME_COLLECTION
 import com.gabriel.gymtimer.Dialogs.AddTimeDialog
-import com.gabriel.gymtimer.Dialogs.DialogHome
 import com.gabriel.gymtimer.Dialogs.LoadingDialog
 import com.gabriel.gymtimer.Firebase.*
 import com.gabriel.gymtimer.adapter.HomeAdapter
@@ -42,9 +41,7 @@ class HomeFragment : Fragment() {
     private lateinit var idGym: String
     private lateinit var imageGym: String
     private lateinit var mContext: Context
-    private val dialogHome by lazy {
-        DialogHome(activity!!)
-    }
+
     private val addTimeDialog by lazy{
         AddTimeDialog(activity!!)
     }
@@ -118,7 +115,10 @@ class HomeFragment : Fragment() {
         imageViewGymHome = view.findViewById(R.id.imageViewGymHome)
         textViewNotHaveTime = view.findViewById(R.id.textViewNotHaveTime)
         floatingActionButtonAddTime = view.findViewById(R.id.floatingActionButtonAddTime)
-        homeAdapter = HomeAdapter(mContext)
+        activity?.let {
+            homeAdapter = HomeAdapter(mContext,it)
+        }
+
         recyclerHome = view.findViewById(R.id.recyclerHome)
         recyclerHome.apply {
             layoutManager = GridLayoutManager(mContext,2)

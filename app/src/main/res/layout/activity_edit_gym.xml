@@ -13,7 +13,7 @@
 
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageViewGymNG"
+            android:id="@+id/imageViewGymEG"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="fitXY"
@@ -23,7 +23,7 @@
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonOpenGaleryNG"
+            android:id="@+id/buttonOpenGaleryEG"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@color/colorAccent"
@@ -42,7 +42,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="22dp"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewGymNG">
+            app:layout_constraintTop_toBottomOf="@+id/imageViewGymEG">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/editTextNameGymEdit"
