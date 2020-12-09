@@ -158,7 +158,6 @@ class HomeFragment : Fragment() {
                     if (docs != null) {
                         try {
                             loadingDialog.dialogDimiss()
-                            timersList.clear()
                             for (doc in docs) {
                                 when (doc.type) {
                                     DocumentChange.Type.ADDED -> {
@@ -170,12 +169,12 @@ class HomeFragment : Fragment() {
 
 
                                     }
-                                    DocumentChange.Type.MODIFIED -> {
+                                   DocumentChange.Type.MODIFIED ->{
+                                        textViewNotHaveTime.visibility = View.GONE
                                         val time = doc.document.toObject(Time::class.java)
                                         timersList.add(time)
                                         homeAdapter.setTimers(timersList)
                                         homeAdapter.notifyDataSetChanged()
-
                                     }
                                 }
                             }

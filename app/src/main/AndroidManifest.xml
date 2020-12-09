@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/ic_app_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.EditGymActivity"></activity>
-        <activity android:name=".ui.AlunosListActivity" />
+        <activity android:name=".ui.EditGymActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".ui.AlunosListActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.LoadingInfomationActivity"
             android:screenOrientation="portrait"

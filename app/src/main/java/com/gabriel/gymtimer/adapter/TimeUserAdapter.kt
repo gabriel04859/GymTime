@@ -46,7 +46,7 @@ class TimeUserAdapter(private val context : Context,private val activity : Activ
         val time = timeList[position]
         val days = "${time.diaInico} - ${time.diaFinal}"
         val hours = "${time.tempoInicio} - ${time.tempoFinal}"
-        val numPeople = "${time.numPessoas} - ${time.countTotal}"
+        val numPeople = "${time.countTotal} / ${time.numPessoas}"
 
         holder.textViewDayTimeUser.text = days
         holder.textViewTimeTimeUser.text = hours

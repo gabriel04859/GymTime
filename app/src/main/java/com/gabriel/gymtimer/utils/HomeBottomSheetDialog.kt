@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import com.gabriel.gymtimer.Consts.Companion.GYM_COLLECTION
+import com.gabriel.gymtimer.Consts.Companion.USER_COLLECTION
 import com.gabriel.gymtimer.Firebase.*
 import com.gabriel.gymtimer.R
 import com.gabriel.gymtimer.model.Gym
@@ -65,14 +67,24 @@ class HomeBottomSheetDialog(gym : Gym) : BottomSheetDialogFragment() {
 
     }
 
-    private fun showWidgetsSheet(gym : Gym){
-        gym.let {
+    private fun showWidgetsSheet(gym : Gym?){
+        gym?.let {
 
             textViewStreetSheet.text = it.address?.rua
             textViewCitySheet.text = it.address?.cidade
             textViewNumSheet.text = it.address?.num.toString()
             textViewCEPSheet.text = it.address?.CEP.toString()
             textViewUFSheet.text = it.address?.UF
+
+            FirebaseSingleton.getFirebaseFirestore().collection(USER_COLLECTION).document(it.idUser!!).get().addOnSuccessListener {
+                val user = it.toObject(User::class.java)
+                user?.let {
+                    textViewNameGymBottomSheet.text = user.name
+                    textViewPhoneGymBottomSheet.text = user.phone
+                    Picasso.with(mContext).load(it.imageUser).into(circleImageViewGym)
+
+                }
+            }
 
         }
         imageButtonEditGymSheet.setOnClickListener {
@@ -81,13 +93,7 @@ class HomeBottomSheetDialog(gym : Gym) : BottomSheetDialogFragment() {
             mContext.startActivity(i)
         }
 
-        FirebaseUtils.getCurrentUser(object : GetCurrentUserCallBack{
-            override fun onGetCurrentUser(user: User) {Picasso.with(mContext).load(user.imageUser).into(circleImageViewGym)
-                textViewNameGymBottomSheet.text = user.name
-                textViewPhoneGymBottomSheet.text = user.phone
-            }
 
-        })
 
 
 
